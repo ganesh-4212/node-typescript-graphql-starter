@@ -1,33 +1,33 @@
 {
-  "name": "express-graphql-starter",
+  "name": "typescript-graphql-starter",
   "version": "0.0.1",
-  "description": "Boiler-plate code to get started with Nodejs, Mongoose, express and GraphQL",
-  "main": "src/server.js",
+  "description": "Boiler-plate code to get started with Nodejs, Mongoose, Typescript and GraphQL",
+  "main": "src/main.ts",
   "scripts": {
     "test": "npm test",
-    "build:dev": "webpack --config webpack.development.js",
-    "start:dev": "node dist/server",
+    "start": "node --inspect=5858 -r ts-node/register ./src/main.ts",
+    "start:watch": "nodemon",
     "serve": "node dist/server.js",
-    "eslint-fix": "eslint --fix src"
+    "prettify": "prettier --write src/**/*.ts src/*.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ganesh-4212/node-express-graphql-starter.git"
+    "url": "git+https://github.com/ganesh-4212/node-typescript-graphql-starter.git"
   },
   "author": "Ganesh Poojary <ganesh4212@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ganesh-4212/node-express-graphql-starter/issues"
+    "url": "https://github.com/ganesh-4212/node-typescript-graphql-starter/issues"
   },
-  "homepage": "https://github.com/ganesh-4212/node-express-graphql-starter#readme",
+  "homepage": "https://github.com/ganesh-4212/node-typescript-graphql-starter#readme",
   "keywords": [
     "nodejs",
+    "typescript",
     "mongoose",
     "mongodb",
     "graphql",
-    "express",
     "apollo-server",
-    "apollo-server-express"
+    "nodemon"
   ],
   "dependencies": {
     "@types/graphql": "^14.2.2",
@@ -42,16 +42,12 @@
   },
   "devDependencies": {
     "@types/node": "^12.0.12",
-    "@types/webpack-env": "^1.13.9",
-    "clean-webpack-plugin": "^3.0.0",
-    "ts-loader": "^6.0.4",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-microsoft-contrib": "^6.2.0",
-    "typescript": "^3.5.2",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-merge": "^4.2.1",
-    "webpack-node-externals": "^1.7.2"
+    "typescript": "^3.5.2"
   }
 }

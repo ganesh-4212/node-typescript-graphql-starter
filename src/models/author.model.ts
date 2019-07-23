@@ -1,13 +1,13 @@
-import { arrayProp, prop, Ref, Typegoose, instanceMethod } from 'typegoose'
+import { arrayProp, prop, Ref, Typegoose } from 'typegoose'
 import { Book } from './book.model'
 
-import { Schema, model, Types } from 'mongoose'
-import { ObjectType, Field, ID } from 'type-graphql'
+import { Types } from 'mongoose'
+import { ObjectType, Field } from 'type-graphql'
 
 @ObjectType()
 export class Author extends Typegoose {
-  @Field(type => Types.ObjectId, { name: 'id', nullable: true })
-  _id?: Types.ObjectId
+  @Field({ nullable: true })
+  readonly id?: string
 
   @Field()
   @prop({ required: true })
@@ -21,9 +21,8 @@ export class Author extends Typegoose {
   @prop()
   url?: string
 
-  // @Field()
-  // @arrayProp({ itemsRef: Book })
-  // books?: Ref<Book>[]
+  @Field(type => [Book], { nullable: true })
+  books?: Book[]
 }
 
 export const AuthorModel = new Author().getModelForClass(Author)

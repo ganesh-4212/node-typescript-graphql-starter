@@ -2,7 +2,7 @@ import { Author } from './../models/author.model'
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class AddAuthorInput implements Partial<Author> {
+export class AuthorInput implements Partial<Author> {
   @Field()
   name: string
 

@@ -6,36 +6,32 @@ import { Container } from 'typedi'
 import * as mongoose from 'mongoose'
 import config from './config'
 import { ObjectIdScalar } from './custom-scalars/objectId.scalar'
-declare const module: any
+import { BookResolver } from './resolvers/book.resolver'
 async function bootstrap() {
   if (mongoose.connection.readyState === 0) {
     mongoose.connect(config.dbURL, {
+      useCreateIndex: true,
       useNewUrlParser: true
     })
   }
-  const schema = await buildSchema({
-    resolvers: [AuthorResolver],
-    container: Container,
-    scalarsMap: [{ type: mongoose.Types.ObjectId, scalar: ObjectIdScalar }]
-  })
-
-  const server = new ApolloServer({
-    schema,
-    playground: true
-  })
+  try {
+    const schema = await buildSchema({
+      resolvers: [AuthorResolver, BookResolver],
+      container: Container,
+      dateScalarMode: 'isoDate',
+      scalarsMap: [{ type: mongoose.Types.ObjectId, scalar: ObjectIdScalar }]
+    })
+    const server = new ApolloServer({
+      schema,
+      playground: true
+    })
+    const { url } = await server.listen()
+    console.log(`Server is running, GraphQL Playground available at ${url}`)
+  } catch (ex) {
+    console.error(ex)
+  }
 
   // Start the server
-  const { url } = await server.listen()
-  console.log(`Server is running, GraphQL Playground available at ${url}`)
-
-  if (module.hot) {
-    module.hot.accept()
-    module.hot.dispose(() => {
-      if (server) {
-        server.stop()
-      }
-    })
-  }
 }
 
 bootstrap()
