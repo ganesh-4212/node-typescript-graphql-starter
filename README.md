@@ -1,4 +1,4 @@
-# babel integration to nodejs
+# GraphQL server boiler plate in NodeJS and Typescript
 
 Boiler-plate code to get started with Typescript, Nodejs and GraphQL.
 
