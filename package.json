@@ -5,6 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "npm test",
+    "docs": "typedoc src/",
     "start": "node --inspect=5858 -r ts-node/register ./src/main.ts",
     "start:watch": "nodemon",
     "serve": "node dist/server.js",
@@ -48,6 +49,7 @@
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-microsoft-contrib": "^6.2.0",
+    "typedoc": "^0.15.0",
     "typescript": "^3.5.2"
   }
 }
